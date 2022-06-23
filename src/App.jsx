@@ -1,7 +1,7 @@
 
 import './App.css'
 import { useEffect, useState } from "react";
-import { HiOutlineRefresh, HiOutlineArrowRight } from "react-icons/hi";
+import { HiOutlineRefresh, HiOutlineArrowRight, HiArrowLeft} from "react-icons/hi";
 
 function App() {
   const [quotesCollection, setQuotesCollection] = useState(false);
@@ -16,6 +16,7 @@ function App() {
   }, []);
 
   const randomQuote = async () => {
+      setQuotesCollection(false);
       await fetch('https://quote-garden.herokuapp.com/api/v3/quotes/random')
         .then(res => res.json())
         .then(result => {
@@ -54,7 +55,7 @@ function App() {
           </div>
           </>
           : <>
-          <h1 onClick={() => setQuotesCollection(false)}>{author}</h1>
+          <h1 onClick={() => setQuotesCollection(false)}> <HiArrowLeft size='2rem' /> {author}</h1>
 
             { quotesArray.map(item => {
                 return (
